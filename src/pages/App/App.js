@@ -1,26 +1,24 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react"
 import { Routes, Route } from "react-router-dom"
-import AuthPage from "../AuthPage/AuthPage"
-import MainPage from "../MainPage/MainPage"
 import './App.css';
-
+import AuthPage from "../AuthPage/AuthPage";
+// import NavBar from "../../components/NavBar";
 import { getUser } from "../../utilities/users-service"
+import HomePage from "../HomePage/HomePage";
 
 export default function App() {
-
   const [user, setUser] = useState(getUser())
 
   return (
     <main className="App">
-
-      {
-        user ?
+      { user ?
         <>
-        <Routes >
-            <Route path="/" element={<MainPage />} />
-          </Routes> 
-        </>
+          {/* <NavBar setUser={setUser} user={user}/> */}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </> 
         :
         <AuthPage setUser={setUser}/>
       }

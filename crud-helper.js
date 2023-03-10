@@ -1,13 +1,14 @@
-require("dotenv").config()
-require("./config/database")
+require('dotenv').config()
+require('./config/database')
 
-//require all the Mongoose models
+// require all of the mongoose models
 
-const User = require("./models/user")
-//cosnt Item = require("./models/item")
+
+const User = require('./models/user')
+// const Item = require('./models.item')
 // const Category = require('./models/category')
 // const Order = require('./models/order')
 
-//local variables will come in handy for holding retrieved documents
+// Local variables will come in handy
 let user, item, category, order
-let users, items, categories, orders
+let users, items, categories, orders 

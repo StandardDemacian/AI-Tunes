@@ -25,21 +25,14 @@ async function create(req, res) {
 
 async function login(req, res) {
     try {
-        //get the uer thats trying to log in
-        const user = await User.findOne({ email: req.body.email });
-        if (!user) throw new Error();
-        //check if the password if valid   
-        const match = await bcrypt.compare(req.body.password, user.password);
-        //if so create a JWT and send it back
-        //if not throw an error
-        if (match){
+        const user = await User.findOne({email: req.body.email})
+        if(bcrypt.compareSync(req.body.password, user.password)) {
             res.json(createJWT(user))
-        }else {
-            throw new Error()
-        }
-      } catch {
-        res.status(400).json('Bad Credentials');
-      }
+        } 
+    } catch (error) {
+        res.status.Code = 422
+        throw error
+    }
 }
 
 function checkToken(req, res) {
