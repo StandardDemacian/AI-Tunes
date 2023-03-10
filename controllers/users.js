@@ -1,4 +1,4 @@
-const User = require('../../models/user')
+const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -24,16 +24,9 @@ async function create(req, res, next) {
 async function logIn(req, res, next) {
     try {
         const user = await User.findOne({email: req.body.email})
-        if(!user) {
-            res.sendStatus(422)
-            return
-        }
         if(bcrypt.compareSync(req.body.password, user.password)) {
             res.json(createJWT(user))
-        } else {
-            res.sendStatus(422)
-            return
-        }
+        } 
     } catch (error) {
         res.status.Code = 422
         throw error
