@@ -35,6 +35,7 @@ async function login(req, res) {
     }
 }
 
+
 function checkToken(req, res) {
     res.json(req.exp)
 }
