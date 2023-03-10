@@ -1,7 +1,13 @@
+import ArtistSearch from "../../components/ArtistSearchForm/ArtistSearchForm"
+
 
 function HomePage() {
     return (
-      <div>HomePage</div>
+      <>
+      <div className="header">HomePage</div>
+      <ArtistSearch/>
+      </>
+  
     )
   }
   
