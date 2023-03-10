@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from 'react'
-import getLyrics from '../LyricsText/LyricsText'
+import { showLyrics } from "../../utilities/lyrics-api";
+// import GetLyrics from '../LyricsText/LyricsText'
 
 export default function SearchBar({ setRes }) {
   const [search, setSearch] = useState('')
@@ -12,12 +13,13 @@ export default function SearchBar({ setRes }) {
 
   async function handleSearch(event) {
     event.preventDefault()
-    const res = await getLyrics(search)
-    const json = await res
-    const slicedJson = json
-    console.log('work')
-    console.log(slicedJson)
-    setRes(slicedJson)
+    // const res = await getLyrics(search)
+    // const json = await res
+    // const slicedJson = json
+    // console.log('work')
+    // console.log(slicedJson)
+    // setRes(slicedJson)
+    showLyrics()
   }
 
   return (
