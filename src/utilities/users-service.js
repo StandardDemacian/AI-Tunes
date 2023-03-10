@@ -1,41 +1,36 @@
-import * as usersAPI from "./users-api"
+import * as userAPI from "./users-api"
 
+    //waiting to get userData from SignUpForm
 export async function signUp(userData) {
-    try {
-        const token = await usersAPI.signUp(userData)
+    const token = await userAPI.signUp(userData)
 
-        // for right now, thos won't be a token but we will be 
-        // returning one eventually
-        if(!token) throw new Error('a;lskdfj')
-        localStorage.setItem('token', token)
-        return getUser()
-    } catch(err) {
-        throw new Error('')
-    }
+    //this will save the token in local storage
+    localStorage.setItem("token", token)
+    return getUser()
 }
 
 export function getToken() {
-    // get the token from local storage
-    // get the tokens payload
+    // get token from local storaghe
+    //get tokens payload
     //check if the token has expired
-    // if it hasn't return the token
-    const token = localStorage.getItem('token') 
-    if(!token) return null
-    // part 1 of the token is the header
-    // part 2 of the token is the payload
-    // part 3 of the token is signature
-    const payload = token.split('.')[1]
-    // JWTs are base64 encoded
-    // we need to decode it to make it usable
-    // javascript has a built in function for decoding base64
-    // called atob()
-    // atob is deprecated in node not in frontend js
+    //if it hasnt return the token
+    const token = localStorage.getItem("token")
+    if (!token) return null
+    //JWT token broken into 3 parts at '.'
+        //1- is the header
+        //2- is the payload
+        //3- is the signature
+    //split the string at the period and grab the second array element
+    const payload = token.split(".")[1]
+    //JWT's are base64 encoded
+    //we need to decode it to make it usable
+    //JavaScript has a built in function for decoding base64 called:  atob()
     const decodedPayload = atob(payload)
     const parsedPayload = JSON.parse(decodedPayload)
-    // JWTs exp is expressed in seconds, not milliseconds, so convert
-    if(parsedPayload.exp < Date.now() / 1000) {
-        // token has expired - remove it
-        localStorage.removeItem('token')
+    //JWTs exp is expressed in seconds not miliseconds so convert
+    if(parsedPayload.exp < Date.now() / 1000){
+        //token has expired    remove it
+        localStorage.removeItem("token")
         return null
     } else {
         return token
@@ -43,34 +38,27 @@ export function getToken() {
 }
 
 export function getUser() {
+        //use above function to obtain token
     const token = getToken()
-    if(token) {
-        const payload = token.split('.')[1]
+    if (token) {
+        const payload = token.split(".")[1]
         const decodedPayload = atob(payload)
         const parsedPayload = JSON.parse(decodedPayload)
         return parsedPayload.user
     } else {
         return null
     }
+    //return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+        //this will do the above if else in one line
 }
 
 export function logOut() {
-    localStorage.removeItem('token')
+    localStorage.removeItem("token")
 }
 
 export async function logIn(credentials) {
-    try {
-        const token = await usersAPI.logIn(credentials)
-        if(!token) throw new Error('')
-        localStorage.setItem('token', token)
-        return getUser()
-    } catch(err) {
-        throw new Error(err)
-    }
+    const token = await userAPI.logIn(credentials)
+    localStorage.setItem("token", token)
+    return getUser()
 }
 
-export function checkToken() {
-    return usersAPI.checkToken()
-        .then(dateStr => new Date(dateStr))
-        .catch(console.error)
-}

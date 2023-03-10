@@ -11,10 +11,10 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
         unique: true,
         trim: true,
-        lowercase: true
+        lowercase: true,
+        required: true
     },
     password: {
         type: String,
@@ -23,9 +23,9 @@ const userSchema = new Schema({
         required: true
     },
     score: {
-        type:Number,
-        required:true,
-        default:0
+        type: Number,
+        required: true,
+        default: 0
     }
 }, {
     timestamps: true,

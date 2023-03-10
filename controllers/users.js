@@ -1,4 +1,4 @@
-const User = require('../../models/user')
+const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -10,10 +10,12 @@ function createJWT(user) {
     )
 }
 
-async function create(req, res, next) {
+async function create(req, res) {
     // just for right now I want to see if this is connected
+    const user = await User.create(req.body)
+    console.log(user)
     try {
-        const user = await User.create(req.body)
+        await user.save()
         const token = createJWT(user)
         res.json(token)
     } catch (error) {
@@ -21,32 +23,31 @@ async function create(req, res, next) {
     }
 }
 
-async function logIn(req, res, next) {
+async function login(req, res) {
     try {
-        const user = await User.findOne({email: req.body.email})
-        if(!user) {
-            res.sendStatus(422)
-            return
-        }
-        if(bcrypt.compareSync(req.body.password, user.password)) {
+        //get the uer thats trying to log in
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) throw new Error();
+        //check if the password if valid   
+        const match = await bcrypt.compare(req.body.password, user.password);
+        //if so create a JWT and send it back
+        //if not throw an error
+        if (match){
             res.json(createJWT(user))
-        } else {
-            res.sendStatus(422)
-            return
+        }else {
+            throw new Error()
         }
-    } catch (error) {
-        res.status.Code = 422
-        throw error
-    }
+      } catch {
+        res.status(400).json('Bad Credentials');
+      }
 }
 
 function checkToken(req, res) {
-    console.log('req.user', req.user)
     res.json(req.exp)
 }
 
 module.exports = {
     create,
-    logIn,
+    login,
     checkToken
 }
