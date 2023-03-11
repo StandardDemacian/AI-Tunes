@@ -23,7 +23,7 @@ export default function SearchBar({ setRes }) {
     // console.log('work')
     // console.log(slicedJson)
     // setRes(slicedJson)
-    showLyrics()
+    showLyrics(event.target)
   }
 
   return (
