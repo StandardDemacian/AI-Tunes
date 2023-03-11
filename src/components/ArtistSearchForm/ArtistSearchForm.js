@@ -9,6 +9,7 @@ export default function SearchBar({ setRes }) {
   function handleChange(event) {
     const formData = event.target.value
     setSearch(formData)
+    console.log(formData)
   }
 
   async function handleSearch(event) {

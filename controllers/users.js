@@ -33,7 +33,6 @@ async function logIn(req, res, next) {
     }
 }
 
-<<<<<<< HEAD
 async function show(req, res, next){
     try{
         const users = await User.find({})
@@ -45,8 +44,6 @@ async function show(req, res, next){
     }
 }
 
-=======
->>>>>>> d2b11af909992ceae86d5eb5c19ff89bdda494f9
 
 function checkToken(req, res) {
     console.log('req.user', req.user)
