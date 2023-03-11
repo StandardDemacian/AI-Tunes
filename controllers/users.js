@@ -33,6 +33,17 @@ async function logIn(req, res, next) {
     }
 }
 
+async function show(req, res, next){
+    try{
+        const users = await User.find({})
+        res.json(users)
+    }
+    catch (error){
+        console.log(error)
+        res.status(400).json(error)
+    }
+}
+
 
 function checkToken(req, res) {
     console.log('req.user', req.user)
@@ -42,5 +53,6 @@ function checkToken(req, res) {
 module.exports = {
     create,
     logIn,
+    show,
     checkToken
 }

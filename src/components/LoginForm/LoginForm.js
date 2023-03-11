@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { logIn } from "../../utilities/users-service"
+import { logIn  } from "../../utilities/users-service"
+import { getAllUsers } from "../../utilities/users-api"
 
 export default function LoginForm({setUser}) {
     const [credentials, setCredentials] = useState({
@@ -21,6 +22,8 @@ export default function LoginForm({setUser}) {
             e.preventDefault()
             const user = await logIn(credentials)
             setUser(user)
+            getAllUsers()
+            
         } catch {
             setError('Error Logging In')
         }
