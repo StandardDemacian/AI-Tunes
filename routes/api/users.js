@@ -10,4 +10,5 @@ router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken)
 router.get('/homepage', usersCtrl.show)
 
 
+
 module.exports = router
