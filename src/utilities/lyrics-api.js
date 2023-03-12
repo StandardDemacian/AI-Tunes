@@ -12,21 +12,28 @@ export default async function sendRequest(url, method='GET', payload=null) {
         options.body = JSON.stringify(payload)
     }
     const res = await fetch(url, options)
-    console.log(url)
+    // console.log(url)
     if(res.ok) {
-        console.log(res.json)
+        // console.log(res.json)
         return res.json()
     } else {
         throw new Error("Bad Request")
     }
 }
 
+export async function showLyricsId(track) {
+    try {
+        const lyricsId = await sendRequest(`${BASE_URL}/get-lyrics-id/${track}`)
+        return lyricsId
+    } catch(err) {
+        console.error(err)
+    }
+}
 
 
 export async function showLyrics(artist) {
     try {
         const lyrics = await sendRequest(`${BASE_URL}/get-lyrics/${artist}`)
-        console.log(lyrics)
         return lyrics
     } catch(err) {
         console.error(err)
