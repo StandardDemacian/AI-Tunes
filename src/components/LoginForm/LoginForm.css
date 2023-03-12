@@ -1,14 +1,22 @@
-#login-button {
+/* .login-form-container {
+
+} */
+
+#login-form {
+    margin: auto;
+}
+
+/* #login-button {
     position: relative;
     left: -80px;
-}
+} */
 
 label {
     position: relative;
     left: -90px;
 }
 
-input {
+.login-input {
     position: relative;
     left: -80px;
     width: 230px;

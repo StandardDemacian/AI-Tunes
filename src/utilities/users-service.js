@@ -1,6 +1,5 @@
-import * as userAPI from "./users-api"
+import * as usersAPI from "./users-api"
 
-    //waiting to get userData from SignUpForm
 export async function signUp(userData) {
     const token = await usersAPI.signUp(userData)
 
@@ -11,27 +10,27 @@ export async function signUp(userData) {
 }
 
 export function getToken() {
-    // get token from local storaghe
-    //get tokens payload
+    // get the token from local storage
+    // get the tokens payload
     //check if the token has expired
-    //if it hasnt return the token
-    const token = localStorage.getItem("token")
-    if (!token) return null
-    //JWT token broken into 3 parts at '.'
-        //1- is the header
-        //2- is the payload
-        //3- is the signature
-    //split the string at the period and grab the second array element
-    const payload = token.split(".")[1]
-    //JWT's are base64 encoded
-    //we need to decode it to make it usable
-    //JavaScript has a built in function for decoding base64 called:  atob()
+    // if it hasn't return the token
+    const token = localStorage.getItem('token') 
+    if(!token) return null
+    // part 1 of the token is the header
+    // part 2 of the token is the payload
+    // part 3 of the token is signature
+    const payload = token.split('.')[1]
+    // JWTs are base64 encoded
+    // we need to decode it to make it usable
+    // javascript has a built in function for decoding base64
+    // called atob()
+    // atob is deprecated in node not in frontend js
     const decodedPayload = atob(payload)
     const parsedPayload = JSON.parse(decodedPayload)
-    //JWTs exp is expressed in seconds not miliseconds so convert
-    if(parsedPayload.exp < Date.now() / 1000){
-        //token has expired    remove it
-        localStorage.removeItem("token")
+    // JWTs exp is expressed in seconds, not milliseconds, so convert
+    if(parsedPayload.exp < Date.now() / 1000) {
+        // token has expired - remove it
+        localStorage.removeItem('token')
         return null
     } else {
         return token
@@ -39,22 +38,19 @@ export function getToken() {
 }
 
 export function getUser() {
-        //use above function to obtain token
     const token = getToken()
-    if (token) {
-        const payload = token.split(".")[1]
+    if(token) {
+        const payload = token.split('.')[1]
         const decodedPayload = atob(payload)
         const parsedPayload = JSON.parse(decodedPayload)
         return parsedPayload.user
     } else {
         return null
     }
-    //return token ? JSON.parse(atob(token.split('.')[1])).user : null;
-        //this will do the above if else in one line
 }
 
 export function logOut() {
-    localStorage.removeItem("token")
+    localStorage.removeItem('token')
 }
 
 export async function logIn(credentials) {

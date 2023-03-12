@@ -9,6 +9,7 @@ export default function SearchBar({ setRes }) {
   function handleChange(event) {
     const formData = event.target.value
     setSearch(formData)
+    // console.log(formData)
   }
 
   async function handleSearch(event) {
@@ -19,7 +20,8 @@ export default function SearchBar({ setRes }) {
     // console.log('work')
     // console.log(slicedJson)
     // setRes(slicedJson)
-    showLyrics()
+    console.log(search)
+    showLyrics(search)
   }
 
   return (

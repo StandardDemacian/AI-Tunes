@@ -11,6 +11,12 @@ export async function logIn(credentials) {
 
 }
 
+// finding all users in database
+export async function getAllUsers(){
+    console.log('gettingAllUsers')
+    return sendRequest(`${BASE_URL}/homepage`, 'GET')
+}
+
 export default async function sendRequest(url, method='GET', payload=null) {
     const options = { method }
     

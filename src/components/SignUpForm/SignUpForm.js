@@ -1,5 +1,6 @@
 import { Component } from "react"
 import { signUp } from "../../utilities/users-service"
+import "./SignUpForm.css"
 
 export default class SignUpForm extends Component{
     // state is just a POJO
@@ -47,12 +48,13 @@ export default class SignUpForm extends Component{
         const disabled = this.state.password !== this.state.confirm
 
         return (
-            <div className="form-container">
-                <form autoComplete="off" onSubmit={this.handleSubmit}>
+            <div className="sign-up-container">
+                <form autoComplete="off" id="sign-up-form" onSubmit={this.handleSubmit}>
                     <label>Name</label>
                     <input 
                         type="text"
                         name="name"
+                        className="sign-up-input"
                         value={this.state.name}
                         onChange={this.handleChange}
                         required 
@@ -61,6 +63,7 @@ export default class SignUpForm extends Component{
                     <input 
                         type="email"
                         name="email"
+                        className="sign-up-input"
                         value={this.state.email}
                         onChange={this.handleChange}
                         required 
@@ -69,6 +72,7 @@ export default class SignUpForm extends Component{
                     <input 
                         type="password"
                         name="password"
+                        className="sign-up-input"
                         value={this.state.password}
                         onChange={this.handleChange}
                         required 
@@ -77,11 +81,12 @@ export default class SignUpForm extends Component{
                     <input 
                         type="password"
                         name="confirm"
+                        className="sign-up-input"
                         value={this.state.confirm}
                         onChange={this.handleChange}
                         required 
                     />
-                    <button type="submit" disabled={disabled}>Sign Up</button>
+                    <button type="submit" disabled={disabled} id="sign-up-button">Sign Up</button>
                 </form>
                 <p className="error-message">{this.state.error}</p>
             </div>

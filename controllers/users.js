@@ -10,12 +10,10 @@ function createJWT(user) {
     )
 }
 
-async function create(req, res) {
+async function create(req, res, next) {
     // just for right now I want to see if this is connected
-    const user = await User.create(req.body)
-    console.log(user)
     try {
-        await user.save()
+        const user = await User.create(req.body)
         const token = createJWT(user)
         res.json(token)
     } catch (error) {
@@ -23,7 +21,7 @@ async function create(req, res) {
     }
 }
 
-async function login(req, res) {
+async function logIn(req, res, next) {
     try {
         const user = await User.findOne({email: req.body.email})
         if(bcrypt.compareSync(req.body.password, user.password)) {
@@ -35,13 +33,26 @@ async function login(req, res) {
     }
 }
 
+async function show(req, res, next){
+    try{
+        const users = await User.find({})
+        res.json(users)
+    }
+    catch (error){
+        console.log(error)
+        res.status(400).json(error)
+    }
+}
+
 
 function checkToken(req, res) {
+    console.log('req.user', req.user)
     res.json(req.exp)
 }
 
 module.exports = {
     create,
-    login,
+    logIn,
+    show,
     checkToken
 }
