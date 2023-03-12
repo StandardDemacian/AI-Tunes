@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import { getUser } from "../../utilities/users-service"
 import HomePage from "../HomePage/HomePage";
 import ArtistSearchForm from "../../components/ArtistSearchForm/ArtistSearchForm";
-import { showLyrics } from "../../utilities/lyrics-api";
+import { showLyrics,showLyricsId } from "../../utilities/lyrics-api";
 import GuessInputForm from "../../components/GuessInputForm/GuessInputForm";
 
 
@@ -24,7 +24,9 @@ function App() {
   async function handleArtistSearch(event) {
     event.preventDefault()
     const lyrics = await showLyrics(artistSearch)
+    // const lyrcisId = await showLyricsId(guess)
     setLyrics(lyrics)
+    // console.log(lyrcisId)
     console.log(lyrics)
   }
 
@@ -35,6 +37,9 @@ function App() {
 
   async function handleUserGuessSubmit(event) {
     event.preventDefault()
+    const lyricsId = await showLyricsId(guess)
+    console.log(lyricsId)
+    setGuess(lyricsId)
     // checkGuess function goes here
     console.log('GAME LOGIC GOES HERE')
   
