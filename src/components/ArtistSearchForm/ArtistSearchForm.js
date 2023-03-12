@@ -12,9 +12,6 @@ export default function SearchBar({ setRes }) {
     // console.log(formData)
   }
 
-  
-
-
   async function handleSearch(event) {
     event.preventDefault()
     // const res = await getLyrics(search)
