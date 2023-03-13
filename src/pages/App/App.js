@@ -15,6 +15,7 @@ function App() {
   const [artistSearch, setArtistSearch] = useState('')
   const [lyrics, setLyrics] = useState(false)
   const [guess, setGuess] = useState('')
+  const [guessId, setGuessId] = useState('')
 
   function handleArtistChange(event) {
     const formData = event.target.value
@@ -23,11 +24,11 @@ function App() {
 
   async function handleArtistSearch(event) {
     event.preventDefault()
-    const lyrics = await showLyrics(artistSearch)
+    const randomLyrics = await showLyrics(artistSearch)
     // const lyrcisId = await showLyricsId(guess)
-    setLyrics(lyrics)
+    setLyrics(randomLyrics.lyrics.lyrics_id)
     // console.log(lyrcisId)
-    console.log(lyrics)
+    console.log(randomLyrics.lyrics.lyrics_id)
   }
 
   function handleGuessInput(event){
@@ -37,18 +38,24 @@ function App() {
 
   async function handleUserGuessSubmit(event) {
     event.preventDefault()
-    const lyricsId = await showLyricsId(guess)
-    console.log(lyricsId)
-    setGuess(lyricsId)
+    const guessedSongId = await showLyricsId(artistSearch,guess)
+    setGuessId(guessedSongId.lyrics.lyrics_id)
     // checkGuess function goes here
+    checkGuess(lyrics,guessedSongId.lyrics.lyrics_id)
     console.log('GAME LOGIC GOES HERE')
   
   }
 
 
   async function checkGuess(userGuess, currentSong){
-    // pull track name that goes along with current lyrics
-    // if trackName === userInput
+  //  let userGuess = guess
+  //  let currentSong = lyrics
+  console.log(`User's guess:${userGuess} and Current Song:${currentSong}`)
+   if(!(userGuess === currentSong)){
+    console.log('yyou lose baddie')
+   } else {
+    console.log('you win or whatever')
+   }
   }
 
 
