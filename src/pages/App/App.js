@@ -65,8 +65,10 @@ export default function App() {
     setLyrics(false)
    } else {
     alert('you win or whatever')
+    setArtistSearch('')
+    setGuess('')
+    setLyrics(false)
     // updateScore(user)
-    
    }
 
   }

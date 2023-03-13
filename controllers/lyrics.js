@@ -19,10 +19,12 @@ async function getLyrics(req,res){
       axios.request(options)
       .then((response) => {
         let trackListBody = response.data.message.body.track_list
+        console.log(trackListBody)
         trackListBody.forEach((song) => {
             let songId = song.track.track_id
             trackList.push(songId)
-            randomTrackId = trackList[Math.floor(Math.random() * trackList.length)]  
+            randomTrackId = trackList[Math.floor(Math.random() * trackList.length)]
+            
                  }
                 )
                 const options = {
@@ -34,6 +36,7 @@ async function getLyrics(req,res){
                         'Access-Control-Allow-Methods': '*'
                     }
                   }
+                  console.log(options)
                   axios.request(options)
                     .then((lyricsResponse) => {
                         let response = lyricsResponse.data.message.body.lyrics
@@ -43,6 +46,7 @@ async function getLyrics(req,res){
 
                     .then(response => {
                         res.status(200).json({lyrics: response})
+                        trackList.length = 0 
                         //ADD remove /n function here
                     })
         }
@@ -56,9 +60,10 @@ async function getLyrics(req,res){
 }
 
 async function getLyricsIdBySongName(req,res){
+    
     try{
-        console.log(req.params)
-     const options = {
+    console.log(req.params)
+    const options = {
          method: 'GET',
          url: `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${req.params.artist}&q_track=${req.params.track}`,
 
@@ -68,15 +73,21 @@ async function getLyricsIdBySongName(req,res){
              'Access-Control-Allow-Methods': '*'
          }
      }
+     
        axios.request(options)
        .then((response) => {
         let trackListBody = response.data.message.body.track_list
+        console.log(trackListBody)
         trackListBody.forEach((song) => {
             let songId = song.track.track_id
+            trackList.push(songId)
+            firstResponseId = trackList[0]
+            console.log(firstResponseId)  
+                 }
+                )
                  const options = {
                      method: 'GET',
                      url: `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${songId}`,
-
                      params: {apikey: key},
 
                      headers: {
@@ -89,20 +100,17 @@ async function getLyricsIdBySongName(req,res){
                          return response
                      })
                      .then(response => {
-                        trackList.length = 0
-                        // console.log('v')
-                        // console.log({lyrics: response})
-                        // console.log('^')
                          res.status(200).json({lyrics: response})
-                         //ADD remove /n function here
+                         trackList.length = 0 
                      })
                 })
-        })
-     
+        
+    
  
      } catch {
          console.log('next')
      }
+    
  }
 
 
