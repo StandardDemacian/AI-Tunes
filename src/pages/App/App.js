@@ -8,13 +8,17 @@ import HomePage from "../HomePage/HomePage";
 import ArtistSearchForm from "../../components/ArtistSearchForm/ArtistSearchForm";
 import { showLyrics,showLyricsId } from "../../utilities/lyrics-api";
 import GuessInputForm from "../../components/GuessInputForm/GuessInputForm";
+import { updateScore } from "../../utilities/users-api";
 
 
 function App() {
   const [user, setUser] = useState(getUser())
   const [artistSearch, setArtistSearch] = useState('')
   const [lyrics, setLyrics] = useState(false)
+  const [audioLyrics, setAudioLyrics] = useState('')
   const [guess, setGuess] = useState('')
+  const [guessId, setGuessId] = useState('')
+
 
   function handleArtistChange(event) {
     const formData = event.target.value
@@ -23,11 +27,11 @@ function App() {
 
   async function handleArtistSearch(event) {
     event.preventDefault()
-    const lyrics = await showLyrics(artistSearch)
+    const randomLyrics = await showLyrics(artistSearch)
     // const lyrcisId = await showLyricsId(guess)
-    setLyrics(lyrics)
+    setLyrics(randomLyrics.lyrics.lyrics_id)
+    setAudioLyrics(randomLyrics.lyrics.lyrics_body)
     // console.log(lyrcisId)
-    console.log(lyrics)
   }
 
   function handleGuessInput(event){
@@ -37,19 +41,71 @@ function App() {
 
   async function handleUserGuessSubmit(event) {
     event.preventDefault()
-    const lyricsId = await showLyricsId(guess)
-    console.log(lyricsId)
-    setGuess(lyricsId)
+    const guessedSongId = await showLyricsId(artistSearch,guess)
+    // setGuessId(guessedSongId.lyrics.lyrics_id)
     // checkGuess function goes here
+    checkGuess(lyrics,guessedSongId.lyrics.lyrics_id)
     console.log('GAME LOGIC GOES HERE')
-  
   }
 
 
   async function checkGuess(userGuess, currentSong){
-    // pull track name that goes along with current lyrics
-    // if trackName === userInput
+  //  let userGuess = guess
+  //  let currentSong = lyrics
+  console.log(`User's guess:${userGuess} and Current Song:${currentSong}`)
+   if(!(userGuess === currentSong)){
+    console.log('yyou lose baddie')
+    setGuess('')
+    setLyrics(false)
+   } else {
+    console.log('you win or whatever')
+    updateScore(user)
+   }
   }
+
+/////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
+  // Getting Text-To-Speech functionality from Rapid API
+const encodedParams = new URLSearchParams();
+encodedParams.append("src", audioLyrics);
+encodedParams.append("hl", "en-us");
+encodedParams.append("r", "1");
+encodedParams.append("c", "mp3");
+encodedParams.append("f", "8khz_8bit_mono");
+
+// Setting up fetch request options for text-to-speech
+const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
+		'X-RapidAPI-Key': '7a6e949fdbmsh4fba1bb53c498bdp1fa899jsn4d7f16681c0f',
+		'X-RapidAPI-Host': 'voicerss-text-to-speech.p.rapidapi.com'
+	},
+	body: encodedParams
+}
+
+const ctx = new AudioContext()
+let audio
+
+// Getting audio data from API response
+const getAudio = () => {
+    fetch('https://voicerss-text-to-speech.p.rapidapi.com/?key=b794892d91a4493287f2b0c74e0275a0', options)
+    .then((data) => data.arrayBuffer())
+    .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
+    .then(decodedAudio => {
+        audio = decodedAudio
+    })
+}
+getAudio()
+
+// Playing audio response
+function playSong(){
+    const playSound = ctx.createBufferSource()
+    playSound.buffer = audio
+    playSound.connect((ctx.destination))
+    playSound.start(ctx.currentTime)
+}
+
+/////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
 
 
   return (
@@ -66,7 +122,8 @@ function App() {
           {lyrics && <GuessInputForm
              handleGuessInput={handleGuessInput}
              handleUserGuessSubmit={handleUserGuessSubmit}
-             setLyrics={setLyrics} />}
+             setLyrics={setLyrics}
+             playSong={playSong} />}
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>

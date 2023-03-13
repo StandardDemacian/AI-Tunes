@@ -11,6 +11,11 @@ export async function logIn(credentials) {
 
 }
 
+//update player score
+export async function updateScore(user){
+    return sendRequest(`${BASE_URL}/score`,'PATCH', user)
+}
+
 // finding all users in database
 export async function getAllUsers(){
     return sendRequest(`${BASE_URL}/homepage`, 'GET')
