@@ -2,7 +2,6 @@ const axios = require('axios');
 
 
 let trackList = []
-let secondTrackList = []
 // const defaultId = 212093082
 // justin     bieber
 async function getLyrics(req,res){
@@ -92,12 +91,12 @@ async function getLyricsIdBySongName(req,res){
                    }
                    axios.request(options)
                      .then((lyricsResponse) => {
-                        console.log(lyricsResponse.data.message)
                          let response = lyricsResponse.data.message.body.lyrics
                          return response
                      })
                      .then(response => {
                          res.status(200).json({lyrics: response})
+                         console.log(trackList)
                          //ADD remove /n function here
                      })
                 })

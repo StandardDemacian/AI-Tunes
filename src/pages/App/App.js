@@ -8,6 +8,7 @@ import HomePage from "../HomePage/HomePage";
 import ArtistSearchForm from "../../components/ArtistSearchForm/ArtistSearchForm";
 import { showLyrics,showLyricsId } from "../../utilities/lyrics-api";
 import GuessInputForm from "../../components/GuessInputForm/GuessInputForm";
+import { updateScore } from "../../utilities/users-api";
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
   async function handleUserGuessSubmit(event) {
     event.preventDefault()
     const guessedSongId = await showLyricsId(artistSearch,guess)
-    setGuessId(guessedSongId.lyrics.lyrics_id)
+    // setGuessId(guessedSongId.lyrics.lyrics_id)
     // checkGuess function goes here
     checkGuess(lyrics,guessedSongId.lyrics.lyrics_id)
     console.log('GAME LOGIC GOES HERE')
@@ -53,8 +54,11 @@ function App() {
   console.log(`User's guess:${userGuess} and Current Song:${currentSong}`)
    if(!(userGuess === currentSong)){
     console.log('yyou lose baddie')
+    setGuess('')
+    setLyrics(false)
    } else {
     console.log('you win or whatever')
+    updateScore(user)
    }
   }
 

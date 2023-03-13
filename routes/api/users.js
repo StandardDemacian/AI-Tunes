@@ -8,6 +8,7 @@ router.post('/', usersCtrl.create)
 router.post('/log-in', usersCtrl.logIn)
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken)
 router.get('/homepage', usersCtrl.show)
+router.patch('/score',usersCtrl.updateScore)
 
 
 
