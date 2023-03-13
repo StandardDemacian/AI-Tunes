@@ -12,9 +12,9 @@ export default async function sendRequest(url, method='GET', payload=null) {
         options.body = JSON.stringify(payload)
     }
     const res = await fetch(url, options)
-    // console.log(url)
+    console.log(url)
     if(res.ok) {
-        // console.log(res.json)
+        console.log(res.json)
         return res.json()
     } else {
         throw new Error("Bad Request")

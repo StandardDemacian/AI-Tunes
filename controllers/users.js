@@ -35,6 +35,7 @@ async function logIn(req, res, next) {
 
 async function updateScore(req,res,next){
     try{
+        console.log(req.body.user)
         const user = await User.findOneAndUpdate(req.body.user, {$inc : {"score" : 1}})
         return user
     } catch(error){

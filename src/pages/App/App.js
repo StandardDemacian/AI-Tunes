@@ -32,6 +32,7 @@ export default function App() {
     // const lyrcisId = await showLyricsId(guess)
     setLyrics(randomLyrics.lyrics.lyrics_id)
     setAudioLyrics(randomLyrics.lyrics.lyrics_body)
+    console.log(user)
     // console.log(lyrcisId)
   }
 
@@ -55,12 +56,15 @@ export default function App() {
   //  let currentSong = lyrics
   console.log(`User's guess:${userGuess} and Current Song:${currentSong}`)
    if(!(userGuess === currentSong)){
-    console.log('yyou lose baddie')
+    // updateScore(user)
+    alert('yyou lose baddie')
+    setArtistSearch('')
     setGuess('')
     setLyrics(false)
    } else {
-    console.log('you win or whatever')
-    updateScore(user)
+    alert('you win or whatever')
+    // updateScore(user)
+    
    }
   }
 
@@ -89,7 +93,7 @@ let audio
 
 // Getting audio data from API response
 const getAudio = () => {
-    fetch('https://voicerss-text-to-speech.p.rapidapi.com/?key=b794892d91a4493287f2b0c74e0275a0', options)
+    fetch('https://voicerss-text-to-speech.p.rapidapi.com/?key=cf5e9c1079094dfab146d6de54a1ebb7', options)
     .then((data) => data.arrayBuffer())
     .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
     .then(decodedAudio => {
