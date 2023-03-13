@@ -3,6 +3,10 @@
   margin-top: -10px;
 }
 
+#main-page-forms {
+  margin: auto;
+}
+
 .App {
   text-align: center;
 }

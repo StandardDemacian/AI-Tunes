@@ -15,7 +15,8 @@ export default function NavBar({user, setUser}) {
             <span>Howdy, {user.name} 
             <br></br>
             Current Score: {user.score}</span>
-            <Link to="" onClick={handleLogOut}>Log Out</Link>
+            <br></br>
+            <Link to="" onClick={handleLogOut} id="log-out-nav-bar">Log Out</Link>
         </nav>
         </div>
     )
