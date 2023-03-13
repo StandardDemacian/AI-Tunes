@@ -25,7 +25,7 @@ export default function HighScoreCard(){
         <div id="scoreboard">
             <img src={scoreboardpic} alt={"teal bubbly text that says scoreboard"} id="scoreboard-img"/>
             {leaderBoard.map((user, index) => (
-                <TopScorersCard name={user.name} score={user.score} index={index} />
+                <TopScorersCard name={user.name} score={user.score} key={index} />
             ))}
         </div>
     )
