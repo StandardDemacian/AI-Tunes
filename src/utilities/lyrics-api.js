@@ -21,9 +21,9 @@ export default async function sendRequest(url, method='GET', payload=null) {
     }
 }
 
-export async function showLyricsId(track) {
+export async function showLyricsId(artist,track) {
     try {
-        const lyricsId = await sendRequest(`${BASE_URL}/get-lyrics-id/${track}`)
+        const lyricsId = await sendRequest(`${BASE_URL}/get-lyrics-id/${artist}/${track}`)
         return lyricsId
     } catch(err) {
         console.error(err)
