@@ -90,7 +90,7 @@ let audio
 
 // Getting audio data from API response
 const getAudio = () => {
-    fetch('https://voicerss-text-to-speech.p.rapidapi.com/?key=b794892d91a4493287f2b0c74e0275a0', options)
+    fetch('https://voicerss-text-to-speech.p.rapidapi.com/?key=cf5e9c1079094dfab146d6de54a1ebb7', options)
     .then((data) => data.arrayBuffer())
     .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
     .then(decodedAudio => {

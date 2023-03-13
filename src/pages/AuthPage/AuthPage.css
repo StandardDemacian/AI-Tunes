@@ -2,6 +2,11 @@
     width: 400px;
 }
 
+#h3 {
+    margin-top: -60px;
+    /* color: ; */
+}
+
 .switch-auth-form {
     margin-left: -149px;
 }

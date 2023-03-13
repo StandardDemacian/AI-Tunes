@@ -16,7 +16,9 @@ export default function AuthPage({ setUser }) {
             alt={"ai tunes logo in bright pink"}
             id="auth-page-logo"
           />
+          <div id="h3">
           <h3>a game of song lyric trivia</h3>
+          </div>
         </div>
 
         <div className="login-signup-container">
