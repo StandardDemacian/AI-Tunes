@@ -1,54 +1,56 @@
 import React from "react";
-import { useState } from "react"
-import { Routes, Route } from "react-router-dom"
-import './App.css';
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import NavBar from "./NavBar";
-import { getUser } from "../../utilities/users-service"
+import { getUser } from "../../utilities/users-service";
 import HomePage from "../HomePage/HomePage";
 import ArtistSearchForm from "../../components/ArtistSearchForm/ArtistSearchForm";
-import { showLyrics,showLyricsId } from "../../utilities/lyrics-api";
+import { showLyrics, showLyricsId } from "../../utilities/lyrics-api";
 import GuessInputForm from "../../components/GuessInputForm/GuessInputForm";
 import { updateScore } from "../../utilities/users-api";
-
+import mainlogo from "../../page-images/ai-tunes.png";
 
 export default function App() {
-  const [user, setUser] = useState(getUser())
-  const [artistSearch, setArtistSearch] = useState('')
-  const [lyrics, setLyrics] = useState(false)
-  const [audioLyrics, setAudioLyrics] = useState('')
-  const [guess, setGuess] = useState('')
-  const [guessId, setGuessId] = useState('')
-
+  const [user, setUser] = useState(getUser());
+  const [artistSearch, setArtistSearch] = useState("");
+  const [lyrics, setLyrics] = useState(false);
+  const [audioLyrics, setAudioLyrics] = useState("");
+  const [guess, setGuess] = useState("");
+  const [guessId, setGuessId] = useState("");
 
   function handleArtistChange(event) {
-    const formData = event.target.value
-    setArtistSearch(formData)
+    const formData = event.target.value;
+    setArtistSearch(formData);
   }
 
   async function handleArtistSearch(event) {
-    event.preventDefault()
-    const randomLyrics = await showLyrics(artistSearch)
+    event.preventDefault();
+    const randomLyrics = await showLyrics(artistSearch);
     // const lyrcisId = await showLyricsId(guess)
+
     setLyrics(randomLyrics.lyrics.lyrics_id)
     setAudioLyrics(randomLyrics.lyrics.lyrics_body)
     console.log(user)
+
     // console.log(lyrcisId)
   }
 
-  function handleGuessInput(event){
-    const guessFormData = event.target.value
-    setGuess(guessFormData)
+  function handleGuessInput(event) {
+    const guessFormData = event.target.value;
+    setGuess(guessFormData);
   }
 
   async function handleUserGuessSubmit(event) {
-    event.preventDefault()
-    const guessedSongId = await showLyricsId(artistSearch,guess)
+    event.preventDefault();
+    const guessedSongId = await showLyricsId(artistSearch, guess);
     // setGuessId(guessedSongId.lyrics.lyrics_id)
     // checkGuess function goes here
-    checkGuess(lyrics,guessedSongId.lyrics.lyrics_id)
-    console.log('GAME LOGIC GOES HERE')
+    checkGuess(lyrics, guessedSongId.lyrics.lyrics_id);
+    console.log("GAME LOGIC GOES HERE");
   }
+
 
 
   async function checkGuess(userGuess, currentSong){
@@ -66,10 +68,12 @@ export default function App() {
     // updateScore(user)
     
    }
+
   }
 
-/////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
+  /////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
   // Getting Text-To-Speech functionality from Rapid API
+
 const encodedParams = new URLSearchParams();
 encodedParams.append("src", audioLyrics);
 encodedParams.append("hl", "ja-jp");
@@ -145,6 +149,7 @@ function stopSong(){
         <AuthPage setUser={setUser}/>
       }
     </main>
+
     </>
   );
 }

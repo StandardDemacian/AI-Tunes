@@ -8,7 +8,10 @@ async function getLyrics(req,res){
     const options = {
         method: 'GET',
         url: `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${req.params.artist}&f_has_lyrics&page_size=10&page=10&s_track_rating=desc`,
+
+
         params: {apikey: key},
+
         headers: {
             'Access-Control-Allow-Methods': '*'
         }
@@ -25,6 +28,7 @@ async function getLyrics(req,res){
                 const options = {
                     method: 'GET',
                     url: `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${randomTrackId}`,
+
                     params: {apikey: key},
                     headers: {
                         'Access-Control-Allow-Methods': '*'
@@ -57,7 +61,9 @@ async function getLyricsIdBySongName(req,res){
      const options = {
          method: 'GET',
          url: `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${req.params.artist}&q_track=${req.params.track}`,
+
          params: {apikey: key},
+
          headers: {
              'Access-Control-Allow-Methods': '*'
          }
@@ -70,7 +76,9 @@ async function getLyricsIdBySongName(req,res){
                  const options = {
                      method: 'GET',
                      url: `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${songId}`,
+
                      params: {apikey: key},
+
                      headers: {
                          'Access-Control-Allow-Methods': '*'
                      }

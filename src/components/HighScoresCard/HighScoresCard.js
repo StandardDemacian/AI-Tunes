@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { getAllUsers } from "../../utilities/users-api"
 import TopScorersCard from "./TopScorersCard"
+import scoreboardpic from "../../page-images/scoreboard.png"
+import "./HighScoresCard.css"
 
 export default function HighScoreCard(){
     const [topUsers, setTopUsers] = useState([])
@@ -20,8 +22,8 @@ export default function HighScoreCard(){
 
 
     return(
-        <div>
-            <h1>Top Scorers</h1>
+        <div id="scoreboard">
+            <img src={scoreboardpic} alt={"teal bubbly text that says scoreboard"} id="scoreboard-img"/>
             {leaderBoard.map((user, index) => (
                 <TopScorersCard name={user.name} score={user.score} key={index} />
             ))}

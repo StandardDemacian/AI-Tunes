@@ -1,3 +1,12 @@
+#main-page-logo {
+  width: 370px;
+  margin-top: -10px;
+}
+
+#main-page-forms {
+  margin: 60px 0px 0px 490px;
+}
+
 .App {
   text-align: center;
 }
