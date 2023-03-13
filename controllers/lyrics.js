@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+let songOptionListThing = []
 let trackList = []
 const key = process.env.API_KEY
 
@@ -7,8 +8,7 @@ async function getLyrics(req,res){
    try{
     const options = {
         method: 'GET',
-        url: `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${req.params.artist}&f_has_lyrics&page_size=10&page=10&s_track_rating=desc`,
-
+        url: `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${req.params.artist}&f_has_lyrics&page_size=10&page=1&s_track_rating=desc`,
 
         params: {apikey: key},
 
@@ -19,12 +19,12 @@ async function getLyrics(req,res){
       axios.request(options)
       .then((response) => {
         let trackListBody = response.data.message.body.track_list
-        console.log(trackListBody)
         trackListBody.forEach((song) => {
             let songId = song.track.track_id
+            let songName = song.track.track_name
+            songOptionListThing.push(songName)
             trackList.push(songId)
             randomTrackId = trackList[Math.floor(Math.random() * trackList.length)]
-            
                  }
                 )
                 const options = {
@@ -36,7 +36,7 @@ async function getLyrics(req,res){
                         'Access-Control-Allow-Methods': '*'
                     }
                   }
-                  console.log(options)
+                //   console.log(options)
                   axios.request(options)
                     .then((lyricsResponse) => {
                         let response = lyricsResponse.data.message.body.lyrics
@@ -45,6 +45,7 @@ async function getLyrics(req,res){
                     })
 
                     .then(response => {
+                        
                         res.status(200).json({lyrics: response})
                         trackList.length = 0 
                         //ADD remove /n function here
@@ -59,13 +60,20 @@ async function getLyrics(req,res){
     }
 }
 
+async function getSongNameArray(req,res){
+    try{
+        const songArray = songOptionListThing
+        res.json(songArray)
+    }catch{console.log('next')}
+}
+
 async function getLyricsIdBySongName(req,res){
     
     try{
     console.log(req.params)
     const options = {
          method: 'GET',
-         url: `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${req.params.artist}&q_track=${req.params.track}`,
+         url: `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${req.params.artist}&q_track=${req.params.track}&s_track_rating=desc`,
 
          params: {apikey: key},
 
@@ -77,17 +85,16 @@ async function getLyricsIdBySongName(req,res){
        axios.request(options)
        .then((response) => {
         let trackListBody = response.data.message.body.track_list
-        console.log(trackListBody)
         trackListBody.forEach((song) => {
             let songId = song.track.track_id
             trackList.push(songId)
             firstResponseId = trackList[0]
-            console.log(firstResponseId)  
+           
                  }
                 )
                  const options = {
                      method: 'GET',
-                     url: `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${songId}`,
+                     url: `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${firstResponseId}`,
                      params: {apikey: key},
 
                      headers: {
@@ -97,11 +104,13 @@ async function getLyricsIdBySongName(req,res){
                    axios.request(options)
                      .then((lyricsIdResponse) => {
                          let response = lyricsIdResponse.data.message.body.lyrics
+                         
                          return response
                      })
                      .then(response => {
                          res.status(200).json({lyrics: response})
-                         trackList.length = 0 
+                         trackList.length = 0
+                         songOptionListThing.length = 0
                      })
                 })
         
@@ -116,7 +125,8 @@ async function getLyricsIdBySongName(req,res){
 
 module.exports = {
    getLyrics,
-   getLyricsIdBySongName
+   getLyricsIdBySongName,
+   getSongNameArray
 }
 
-// http://api.musixmatch.com/ws/1.1/track.search?apikey=48a555dd37f4da903d3831bd93e445bf&q_artist=sia&q_track=titanium
+
