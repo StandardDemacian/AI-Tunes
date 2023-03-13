@@ -6,10 +6,9 @@
     margin: auto;
 }
 
-/* #login-button {
-    position: relative;
-    left: -80px;
-} */
+#login-button {
+    width: 170px;
+}
 
 label {
     position: relative;

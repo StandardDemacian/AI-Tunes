@@ -9,7 +9,7 @@ async function getLyrics(req,res){
     const options = {
         method: 'GET',
         url: `http://api.musixmatch.com/ws/1.1/track.search?q_artist=${req.params.artist}&f_has_lyrics&page_size=10&page=10&s_track_rating=desc`,
-        params: {apikey: '48a555dd37f4da903d3831bd93e445bf'},
+        params: {apikey: '5e820c7f0c434a3d23fbc97e58529bd6'},
         headers: {
             'Access-Control-Allow-Methods': '*'
         }
@@ -33,7 +33,7 @@ async function getLyrics(req,res){
                 const options = {
                     method: 'GET',
                     url: `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${randomTrackId}`,
-                    params: {apikey: '48a555dd37f4da903d3831bd93e445bf'},
+                    params: {apikey: '5e820c7f0c434a3d23fbc97e58529bd6'},
                     headers: {
                         'Access-Control-Allow-Methods': '*'
                     }
@@ -63,7 +63,7 @@ async function getLyricsIdBySongName(req,res){
      const options = {
          method: 'GET',
          url: `http://api.musixmatch.com/ws/1.1/track.search?q_track=${req.params.track}&page_size=1&page=1`,
-         params: {apikey: '48a555dd37f4da903d3831bd93e445bf'},
+         params: {apikey: '5e820c7f0c434a3d23fbc97e58529bd6'},
          headers: {
              'Access-Control-Allow-Methods': '*'
          }
@@ -83,7 +83,7 @@ async function getLyricsIdBySongName(req,res){
                  const options = {
                      method: 'GET',
                      url: `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackList[0]}`,
-                     params: {apikey: '48a555dd37f4da903d3831bd93e445bf'},
+                     params: {apikey: '5e820c7f0c434a3d23fbc97e58529bd6'},
                      headers: {
                          'Access-Control-Allow-Methods': '*'
                      }
@@ -112,4 +112,4 @@ module.exports = {
    getLyricsIdBySongName
 }
 
-// http://api.musixmatch.com/ws/1.1/track.search?apikey=48a555dd37f4da903d3831bd93e445bf&q_artist=sia&q_track=titanium
+// http://api.musixmatch.com/ws/1.1/track.search?apikey=5e820c7f0c434a3d23fbc97e58529bd6&q_artist=sia&q_track=titanium
