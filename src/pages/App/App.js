@@ -12,6 +12,8 @@ import GuessInputForm from "../../components/GuessInputForm/GuessInputForm";
 import { updateScore } from "../../utilities/users-api";
 import mainlogo from "../../page-images/ai-tunes.png";
 
+// hey this is something
+
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [artistSearch, setArtistSearch] = useState("");
