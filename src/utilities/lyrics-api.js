@@ -30,6 +30,15 @@ export async function showLyricsId(artist,track) {
     }
 }
 
+export async function getSongArray() {
+    try{
+        const songArray = await sendRequest(`${BASE_URL}/get-songArray`)
+        return songArray
+    } catch(err){
+        console.error(err)
+    }
+}
+
 
 export async function showLyrics(artist) {
     try {
