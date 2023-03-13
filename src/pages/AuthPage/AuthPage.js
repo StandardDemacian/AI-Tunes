@@ -2,6 +2,7 @@ import SignUpForm from "../../components/SignUpForm/SignUpForm"
 import LoginForm from "../../components/LoginForm/LoginForm"
 import { useState } from "react"
 import './AuthPage.css'
+import authlogo from '../../images/ai-tunes.png'
 
 export default function AuthPage({setUser}) {
 
@@ -9,7 +10,10 @@ export default function AuthPage({setUser}) {
 
     return (
         <>
-            <h2></h2>
+        <div className="auth-page-logo-container">
+            <img src={authlogo} alt={"ai tunes logo in bright pink"} id="auth-page-logo"/>
+            <h3>a game of song lyric trivia</h3>
+        </div>
 
             {showForm ? (
             <>
