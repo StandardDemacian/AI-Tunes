@@ -53,7 +53,7 @@ export default function App() {
     //  let currentSong = lyrics
     console.log(`User's guess:${userGuess} and Current Song:${currentSong}`);
     if (!(userGuess === currentSong)) {
-      console.log("yyou lose baddie");
+      console.log("you lose baddie");
       setGuess("");
       setLyrics(false);
     } else {
