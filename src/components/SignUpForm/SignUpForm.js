@@ -50,7 +50,7 @@ export default class SignUpForm extends Component{
         return (
             <div className="sign-up-container">
                 <form autoComplete="off" id="sign-up-form" onSubmit={this.handleSubmit}>
-                    <label>Name</label>
+                    <label className="signuplabel">Name</label>
                     <input 
                         type="text"
                         name="name"
@@ -59,7 +59,7 @@ export default class SignUpForm extends Component{
                         onChange={this.handleChange}
                         required 
                     />
-                    <label>Email</label>
+                    <label className="signuplabel">Email</label>
                     <input 
                         type="email"
                         name="email"
@@ -68,7 +68,7 @@ export default class SignUpForm extends Component{
                         onChange={this.handleChange}
                         required 
                     />
-                    <label>Password</label>
+                    <label className="signuplabel">Password</label>
                     <input 
                         type="password"
                         name="password"
@@ -77,7 +77,7 @@ export default class SignUpForm extends Component{
                         onChange={this.handleChange}
                         required 
                     />
-                    <label>Confirm</label>
+                    <label className="signuplabel">Confirm</label>
                     <input 
                         type="password"
                         name="confirm"
