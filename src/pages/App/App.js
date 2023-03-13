@@ -117,8 +117,8 @@ export default function App() {
               alt={"main app logo in bright pink"}
               id="main-page-logo"
             />
-            <div id="main-page-forms">
               <NavBar setUser={setUser} user={user} />
+              <div id="main-page-forms">
               <ArtistSearchForm
                 handleArtistChange={handleArtistChange}
                 handleArtistSearch={handleArtistSearch}

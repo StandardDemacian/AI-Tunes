@@ -1,6 +1,8 @@
 .navbar {
-    margin-left: -750px;
-    margin-top: 5px;
+    position: absolute;
+    justify-content: left;
+    margin-top: -53px;
+    margin-left: 85px;
 }
 
 #log-out-nav-bar {
