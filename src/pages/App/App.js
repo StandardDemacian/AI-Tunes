@@ -10,6 +10,7 @@ import ArtistSearchForm from "../../components/ArtistSearchForm/ArtistSearchForm
 import { showLyrics,showLyricsId } from "../../utilities/lyrics-api";
 import GuessInputForm from "../../components/GuessInputForm/GuessInputForm";
 import { updateScore } from "../../utilities/users-api";
+import mainlogo from "../../page-images/ai-tunes.png"
 
 
 export default function App() {
@@ -114,6 +115,7 @@ function playSong(){
     <main className="App">
       { user ?
         <>
+          <img src={mainlogo} alt={"main app logo in bright pink"} id="main-page-logo" />
           <NavBar setUser={setUser} user={user}/>
           <ArtistSearchForm 
             handleArtistChange={handleArtistChange}

@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import * as userService from "../../utilities/users-service"
+import "./NavBar.css"
 
 export default function NavBar({user, setUser}) {
     function handleLogOut() {
@@ -9,11 +10,13 @@ export default function NavBar({user, setUser}) {
         setUser(null)
     }
     return (
+        <div className="navbar">
         <nav>
             <span>Howdy, {user.name} 
             <br></br>
             Current Score: {user.score}</span>
             <Link to="" onClick={handleLogOut}>Log Out</Link>
         </nav>
+        </div>
     )
 }

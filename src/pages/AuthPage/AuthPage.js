@@ -2,7 +2,7 @@ import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { useState } from "react";
 import "./AuthPage.css";
-import authlogo from "../../images/ai-tunes.png";
+import authlogo from "../../page-images/ai-tunes.png";
 
 export default function AuthPage({ setUser }) {
   const [showForm, setShowForm] = useState(false);
