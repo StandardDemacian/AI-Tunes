@@ -23,7 +23,7 @@ export default function HighScoreCard(){
         <div>
             <h1>Top Scorers</h1>
             {leaderBoard.map((user, index) => (
-                <TopScorersCard name={user.name} score={user.score} index={index} />
+                <TopScorersCard name={user.name} score={user.score} key={index} />
             ))}
         </div>
     )

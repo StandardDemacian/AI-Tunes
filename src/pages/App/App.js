@@ -72,10 +72,11 @@ export default function App() {
   // Getting Text-To-Speech functionality from Rapid API
 const encodedParams = new URLSearchParams();
 encodedParams.append("src", audioLyrics);
-encodedParams.append("hl", "en-us");
+encodedParams.append("hl", "ja-jp");
 encodedParams.append("r", "1");
 encodedParams.append("c", "mp3");
 encodedParams.append("f", "8khz_8bit_mono");
+encodedParams.append("v", "Airi");
 
 // Setting up fetch request options for text-to-speech
 const options = {
@@ -89,7 +90,9 @@ const options = {
 }
 
 const ctx = new AudioContext()
+
 let audio
+let playSound
 
 // Getting audio data from API response
 const getAudio = () => {
@@ -104,12 +107,15 @@ getAudio()
 
 // Playing audio response
 function playSong(){
-    const playSound = ctx.createBufferSource()
+    playSound = ctx.createBufferSource()
     playSound.buffer = audio
     playSound.connect((ctx.destination))
     playSound.start(ctx.currentTime)
 }
 
+function stopSong(){
+  playSound.stop(ctx.currentTime)
+}
 /////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
 
 
@@ -129,7 +135,8 @@ function playSong(){
              handleGuessInput={handleGuessInput}
              handleUserGuessSubmit={handleUserGuessSubmit}
              setLyrics={setLyrics}
-             playSong={playSong} />}
+             playSong={playSong}
+             stopSong={stopSong} />}
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>
