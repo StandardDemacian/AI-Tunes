@@ -1,0 +1,10 @@
+.navbar {
+    position: absolute;
+    justify-content: left;
+    margin-top: -53px;
+    margin-left: 85px;
+}
+
+#log-out-nav-bar {
+    color: #ff9fda;
+}

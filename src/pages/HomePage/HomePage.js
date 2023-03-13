@@ -1,13 +1,13 @@
 import HighScoreCard from "../../components/HighScoresCard/HighScoresCard"
+import './HomePage.css'
 
-function HomePage() {
+export default function HomePage() {
     return (
       <>
-        <div className="header">This is the Home Page</div>
+        <div className="homepage">This is the Home Page</div>
         <HighScoreCard/>
       </>
   
     )
   }
   
-  export default HomePage
