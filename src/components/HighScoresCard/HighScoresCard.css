@@ -4,7 +4,6 @@
 }
 
 #scoreboard {
-    position: absolute;
-    justify-content: left;
-    margin-top: -60px;
+    margin-top: -120px;
+    margin-left: -980px;
 }
