@@ -33,10 +33,11 @@ async function logIn(req, res, next) {
     }
 }
 
-async function updateScore(req,res,next){
+async function updateScore(req, res, next){
     try{
-        console.log(req.body.user)
-        const user = await User.findOneAndUpdate(req.body.user, {$inc : {"score" : 1}})
+        const user = await User.findOne({email: req.body.email})
+        user.score++
+        user.save()
         return user
     } catch(error){
         res.status.Code = 422

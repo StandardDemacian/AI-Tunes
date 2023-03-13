@@ -32,8 +32,6 @@ export default function App() {
     // const lyrcisId = await showLyricsId(guess)
     setLyrics(randomLyrics.lyrics.lyrics_id)
     setAudioLyrics(randomLyrics.lyrics.lyrics_body)
-    console.log(user)
-    // console.log(lyrcisId)
   }
 
   function handleGuessInput(event){
@@ -63,7 +61,7 @@ export default function App() {
     setLyrics(false)
    } else {
     alert('you win or whatever')
-    // updateScore(user)
+    updateScore(user)
     
    }
   }

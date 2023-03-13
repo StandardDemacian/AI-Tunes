@@ -33,6 +33,7 @@ async function getLyrics(req,res){
                   axios.request(options)
                     .then((lyricsResponse) => {
                         let response = lyricsResponse.data.message.body.lyrics
+                        console.log(response)
                         return response
                         // returns a lyrics object that we need to match ID
                     })
