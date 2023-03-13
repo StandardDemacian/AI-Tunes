@@ -11,4 +11,4 @@ const User = require('./models/user')
 
 // Local variables will come in handy
 let user, item, category, order
-let users, items, categories, orders
+let users, items, categories, orders 

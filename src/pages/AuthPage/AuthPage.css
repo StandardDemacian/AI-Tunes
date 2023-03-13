@@ -1,0 +1,36 @@
+#auth-page-logo {
+    width: 400px;
+}
+
+#auth-page-logo-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.switch-auth-form {
+    margin-left: -149px;
+}
+
+.login-anchor {
+    cursor: grab;
+    text-decoration: underline;
+    color: #f269bd;
+}
+
+.auth-page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.auth-page-logo-container {
+    grid-area: 1 / 2 / 6 / 3;
+    margin-top: 59px;
+}
+
+.login-signup-container {
+    grid-area: 1 / 1 / 6 / 2;
+    margin-left: 300px;
+}

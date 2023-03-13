@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import './App.css';
@@ -11,7 +12,7 @@ import GuessInputForm from "../../components/GuessInputForm/GuessInputForm";
 import { updateScore } from "../../utilities/users-api";
 
 
-function App() {
+export default function App() {
   const [user, setUser] = useState(getUser())
   const [artistSearch, setArtistSearch] = useState('')
   const [lyrics, setLyrics] = useState(false)
@@ -109,6 +110,7 @@ function playSong(){
 
 
   return (
+    <>
     <main className="App">
       { user ?
         <>
@@ -132,7 +134,6 @@ function playSong(){
         <AuthPage setUser={setUser}/>
       }
     </main>
+    </>
   );
 }
-
-export default App;

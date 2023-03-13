@@ -43,6 +43,7 @@ async function getLyrics(req,res){
                         return response
                         // returns a lyrics object that we need to match ID
                     })
+
                     .then(response => {
                         res.status(200).json({lyrics: response})
                         //ADD remove /n function here
