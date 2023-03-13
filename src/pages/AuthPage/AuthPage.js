@@ -10,16 +10,18 @@ export default function AuthPage({setUser}) {
 
     return (
         <>
-        <div className="auth-page-logo-container">
+        <div className = "auth-page-grid">
+          <div className="auth-page-logo-container">
             <img src={authlogo} alt={"ai tunes logo in bright pink"} id="auth-page-logo"/>
             <h3>a game of song lyric trivia</h3>
-        </div>
+          </div>
 
+          <div className = "login-signup-container">
             {showForm ? (
             <>
              <LoginForm setUser={setUser}/>
              <p>Don't have an account? Click <span className="login-anchor" onClick={() => setShowForm(!showForm)}>
-            <a href="#">here</a>
+             here
           </span> to sign up.</p>
             </>
             ) : (
@@ -27,10 +29,12 @@ export default function AuthPage({setUser}) {
                 <SignUpForm setUser={setUser} />
                 <p>
                 Already have an account? <span className="login-anchor" onClick={() => setShowForm(!showForm)}>
-                  <a href="#">Login</a>
+                Login
                 </span>
               </p>
               </>
             )}
+          </div>
+        </div>
         </>
     )}

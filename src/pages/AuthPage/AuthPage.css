@@ -3,7 +3,29 @@
 }
 
 #auth-page-logo-container {
-    position: fixed;
-    top: 70px;
-    right: 
+    display: flex;
+    flex-direction: column;
+}
+
+.login-anchor {
+    cursor: grab;
+    text-decoration: underline;
+    color: #D5439C;
+}
+
+.auth-page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.auth-page-logo-container {
+    grid-area: 1 / 2 / 6 / 3;
+    margin-top: 20px;
+}
+
+.login-signup-container {
+    grid-area: 1 / 1 / 6 / 2;
 }
