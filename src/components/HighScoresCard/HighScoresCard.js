@@ -11,6 +11,7 @@ export default function HighScoreCard(){
         async function getHighestScoringUsers(){
             const topUsers = await getAllUsers()
             setTopUsers(topUsers)
+            console.log(topUsers)
         }
         getHighestScoringUsers()
     }, [])

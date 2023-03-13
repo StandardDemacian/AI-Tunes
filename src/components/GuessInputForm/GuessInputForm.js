@@ -1,9 +1,10 @@
 import './GuessInputForm.css'
+import ScoreCard from '../ScoreCard/ScoreCard'
 
-export default function GuessInputForm({ handleGuessInput, handleUserGuessSubmit, playSong, stopSong, SongArray }){
+export default function GuessInputForm({ handleGuessInput, handleUserGuessSubmit, playSong, stopSong, SongArray, score }){
     return(
     <>
-    {console.log(SongArray)}
+    <ScoreCard score={score} />
      <form>
         <button type='button' id="play-song-button" onClick={playSong}>Play Song</button>
         <button type='button' id="play-song-button" onClick={stopSong}>Stop Song</button>
