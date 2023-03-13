@@ -15,8 +15,10 @@ function App() {
   const [user, setUser] = useState(getUser())
   const [artistSearch, setArtistSearch] = useState('')
   const [lyrics, setLyrics] = useState(false)
+  const [audioLyrics, setAudioLyrics] = useState('')
   const [guess, setGuess] = useState('')
   const [guessId, setGuessId] = useState('')
+
 
   function handleArtistChange(event) {
     const formData = event.target.value
@@ -28,8 +30,8 @@ function App() {
     const randomLyrics = await showLyrics(artistSearch)
     // const lyrcisId = await showLyricsId(guess)
     setLyrics(randomLyrics.lyrics.lyrics_id)
+    setAudioLyrics(randomLyrics.lyrics.lyrics_body)
     // console.log(lyrcisId)
-    console.log(randomLyrics.lyrics.lyrics_id)
   }
 
   function handleGuessInput(event){
@@ -44,7 +46,6 @@ function App() {
     // checkGuess function goes here
     checkGuess(lyrics,guessedSongId.lyrics.lyrics_id)
     console.log('GAME LOGIC GOES HERE')
-  
   }
 
 
@@ -62,6 +63,50 @@ function App() {
    }
   }
 
+/////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
+  // Getting Text-To-Speech functionality from Rapid API
+const encodedParams = new URLSearchParams();
+encodedParams.append("src", audioLyrics);
+encodedParams.append("hl", "en-us");
+encodedParams.append("r", "1");
+encodedParams.append("c", "mp3");
+encodedParams.append("f", "8khz_8bit_mono");
+
+// Setting up fetch request options for text-to-speech
+const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
+		'X-RapidAPI-Key': '7a6e949fdbmsh4fba1bb53c498bdp1fa899jsn4d7f16681c0f',
+		'X-RapidAPI-Host': 'voicerss-text-to-speech.p.rapidapi.com'
+	},
+	body: encodedParams
+}
+
+const ctx = new AudioContext()
+let audio
+
+// Getting audio data from API response
+const getAudio = () => {
+    fetch('https://voicerss-text-to-speech.p.rapidapi.com/?key=b794892d91a4493287f2b0c74e0275a0', options)
+    .then((data) => data.arrayBuffer())
+    .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
+    .then(decodedAudio => {
+        audio = decodedAudio
+    })
+}
+getAudio()
+
+// Playing audio response
+function playSong(){
+    const playSound = ctx.createBufferSource()
+    playSound.buffer = audio
+    playSound.connect((ctx.destination))
+    playSound.start(ctx.currentTime)
+}
+
+/////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
+
 
   return (
     <main className="App">
@@ -77,7 +122,8 @@ function App() {
           {lyrics && <GuessInputForm
              handleGuessInput={handleGuessInput}
              handleUserGuessSubmit={handleUserGuessSubmit}
-             setLyrics={setLyrics} />}
+             setLyrics={setLyrics}
+             playSong={playSong} />}
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>
