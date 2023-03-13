@@ -111,11 +111,11 @@ form {
   color: var(--text-light);
 }
 
-label {
+/* label {
   font-size: 2vmin;
   display: flex;
   align-items: center;
-}
+} */
 
 input {
   padding: 1vmin;
