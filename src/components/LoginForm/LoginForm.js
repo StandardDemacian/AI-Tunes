@@ -27,7 +27,7 @@ export default function LoginForm({setUser}) {
             getAllUsers()
             
         } catch {
-            setError('Error Logging In')
+            setError('Login failed.')
         }
     }
 
@@ -54,7 +54,9 @@ export default function LoginForm({setUser}) {
                     />
                     <button type="submit" id="login-button">Sign In</button>
                 </form>
-                <p className="error-message">{error}</p>
+                <div className="error-message">
+                <p>{error}</p>
+                </div>
             </div>
     )
 }

@@ -1,46 +1,75 @@
-#auth-page-logo {
-    width: 400px;
-}
-
-#h3 {
-    margin-top: -60px; 
-     color: white;
-}
-
-.switch-auth-form {
-     margin-left: -149px; 
-
-}
-
-.login-anchor {
+@keyframes changeHeaderColor {
+    0%  {color: #fdc7e8;}
+    25% {color: #ff7bcc;}
+    50% {color: #9476f6;}
+    75% {color: #7da8f9}
+    100% {color: #aff2ff;}
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-40%);
+     }
+    to {
+      transform: translateY(0%);
+     }
+  }
+  
+  @keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    50% { transform: rotate(0eg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+   }
+  
+  #auth-page-logo {
+    width: 450px;
+    animation-name: slideDown;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+  }
+  #h3 {
+    position: relative;
+    top: -70px;
+    font-family: Futura;
+    animation-name: changeHeaderColor;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+  }
+  
+  #h3-auth-page-shake-animation {
+    animation-name: shake;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+  
+  #click-to-sign-up {
+    margin-top: 50px;
+  }
+  .switch-auth-form {
+    position: relative;
+    left: -70px;
+  }
+  .login-anchor {
     cursor: grab;
     text-decoration: underline;
-    color: #f269bd;
-}
-
-.auth-page-grid {
+    color: #F269BD;
+  }
+  .auth-page-grid {
+    border: 4px solid white;
     display: flex;
-    justify-content: space-around;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    border: 2px solid #f269bd;
+    justify-content: space-evenly;
+    /* gap: 15px; */
+    border: 2px solid #F269BD;
     border-radius: 50px;
     padding: 0 0px 70px 0px;
     margin: 55px 100px 10px 100px;
-}
-
-.auth-page-logo-container {
-    margin-left: auto;
-    
-     grid-area: 1 / 2 / 6 / 3;
-    margin-top: 59px; 
-}
-
-.login-signup-container {
-    border: 4px solid green;
-
-     grid-area: 1 / 1 / 6 / 2;
-    margin-left: 200px;
-}
+  }
+  .auth-page-logo-container {
+    margin-top: 80px;
+  }
+  .login-signup-container {
+    margin-left: 100px;
+  }
