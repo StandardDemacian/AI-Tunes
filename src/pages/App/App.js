@@ -85,7 +85,7 @@ encodedParams.append("v", "Amy");
 // Setting up fetch request options for text-to-speech
 const options = {
 	method: 'POST',
-  params: {api: textKey},
+  // params: {api: textKey},
 	headers: {
 		'content-type': 'application/x-www-form-urlencoded',
 		'X-RapidAPI-Key': '7a6e949fdbmsh4fba1bb53c498bdp1fa899jsn4d7f16681c0f',
