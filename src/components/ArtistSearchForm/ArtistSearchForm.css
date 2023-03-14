@@ -1,5 +1,13 @@
+#artist-search-form{
+    display: block;
+    padding: 2em 0;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
 #artist-search-button {
-    width: 170px;
+    max-width: 80%;
+    width: 12em;
     margin-top: 10px;
     color: black;
     font-size: 14px;
@@ -8,9 +16,15 @@
     border: 3px solid black;
 }
 
+#artist-search-button:hover{
+    background-color: #1bbaea;
+}
 #artist-input{
-    width: 260px;
-    height: 30px;
+    max-width: 80%;
+    padding: 0.5em 8em;
+    margin: 0 2em;
+    /* width: 260px;
+    height: 30px; */
 }
 /* 
 #artist-search-form {

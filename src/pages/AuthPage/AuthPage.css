@@ -3,12 +3,13 @@
 }
 
 #h3 {
-    margin-top: -60px;
-    /* color: ; */
+    margin-top: -60px; 
+     color: white;
 }
 
 .switch-auth-form {
-    margin-left: -149px;
+     margin-left: -149px; 
+
 }
 
 .login-anchor {
@@ -18,7 +19,8 @@
 }
 
 .auth-page-grid {
-    display: grid;
+    display: flex;
+    justify-content: space-around;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
@@ -30,11 +32,15 @@
 }
 
 .auth-page-logo-container {
-    grid-area: 1 / 2 / 6 / 3;
-    margin-top: 59px;
+    margin-left: auto;
+    
+     grid-area: 1 / 2 / 6 / 3;
+    margin-top: 59px; 
 }
 
 .login-signup-container {
-    grid-area: 1 / 1 / 6 / 2;
+    border: 4px solid green;
+
+     grid-area: 1 / 1 / 6 / 2;
     margin-left: 200px;
 }

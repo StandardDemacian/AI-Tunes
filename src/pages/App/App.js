@@ -128,31 +128,44 @@ function stopSong(){
     <main className="App">
       { user ? (
         <>
-         <img
+        <div className="header-form">
+        <img
             src={mainlogo}
             alt={"main app logo in bright pink"}
             id="main-page-logo"
          />
           <NavBar setUser={setUser} user={user}/>
-          <div id="main-page-forms">
+        </div>
+         
+         <div id="homepage-container">
 
-          <ArtistSearchForm 
-            handleArtistChange={handleArtistChange}
-            handleArtistSearch={handleArtistSearch}
-            artistSearch={artistSearch}
-            setArtistSearch={setArtistSearch}
-          />
-
-          {lyrics && (
-          <GuessInputForm
-             SongArray = {songArray}
-             handleGuessInput={handleGuessInput}
-             handleUserGuessSubmit={handleUserGuessSubmit}
-             setLyrics={setLyrics}
-             playSong={playSong}
-             stopSong={stopSong}
-             score={ScoreCard} />)}
+         <div id="score-board-div">
+              <HomePage />
           </div>
+
+          <div id="main-page-forms">
+              <ArtistSearchForm 
+                handleArtistChange={handleArtistChange}
+                handleArtistSearch={handleArtistSearch}
+                artistSearch={artistSearch}
+                setArtistSearch={setArtistSearch}
+              />
+
+              {lyrics && (
+              <GuessInputForm
+                SongArray = {songArray}
+                handleGuessInput={handleGuessInput}
+                handleUserGuessSubmit={handleUserGuessSubmit}
+                setLyrics={setLyrics}
+                playSong={playSong}
+                stopSong={stopSong}
+                score={ScoreCard} />)}
+            </div>
+
+           
+         </div>
+
+          
 
           {guessCorrectMessage && (
             <h3>Congratulations! 10 points to Gryffindor!</h3>
@@ -162,7 +175,7 @@ function stopSong(){
           )} 
 
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            {/* <Route path="/" element={<HomePage />} /> */}
           </Routes>
         </> 
 

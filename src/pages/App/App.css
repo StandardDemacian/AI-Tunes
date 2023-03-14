@@ -1,10 +1,30 @@
-#main-page-logo {
-  width: 370px;
-  margin-top: -10px;
+#header-form{
+  display: flex;
 }
 
+#homepage-container{
+  display: flex;
+}
+
+#score-board-div{
+  margin: 0 2%;
+  max-width: 10%;
+ 
+}
+
+#main-page-logo {
+  max-width: 20%;
+  /* width: 370px; */
+  /* margin-top: -10px; */
+}
+
+
 #main-page-forms {
-  margin: 60px 0px 0px 490px;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  
+  /* margin: 60px 0px 0px 490px; */
 }
 
 .App {
