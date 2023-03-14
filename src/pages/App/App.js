@@ -13,7 +13,9 @@ import ScoreCard from "../../components/ScoreCard/ScoreCard";
 import { updateScore } from "../../utilities/users-api";
 import mainlogo from "../../page-images/ai-tunes.png";
 
+
 const textKey = process.env.VOICE_API_KEY
+
 
 export default function App() {
   //ALLLLLLLL THE STATE
