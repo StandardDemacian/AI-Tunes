@@ -87,63 +87,22 @@ export default function App() {
   const ctx = new AudioContext();
   let audio;
 
-  // Getting audio data from API response
-  const getAudio = () => {
-    fetch(
-      "https://voicerss-text-to-speech.p.rapidapi.com/?key=cf5e9c1079094dfab146d6de54a1ebb7",
-      options
-    )
-      .then((data) => data.arrayBuffer())
-      .then((arrayBuffer) => ctx.decodeAudioData(arrayBuffer))
-      .then((decodedAudio) => {
-        audio = decodedAudio;
-      });
-  };
-  getAudio();
-
-  // Playing audio response
-  function playSong() {
-    const playSound = ctx.createBufferSource();
-    playSound.buffer = audio;
-    playSound.connect(ctx.destination);
-    playSound.start(ctx.currentTime);
-  }
+function App() {
+  const [user, setUser] = useState(getUser())
+ 
 
   return (
-    <>
-      <main className="App">
-        {user ? (
-          <>
-            <img
-              src={mainlogo}
-              alt={"main app logo in bright pink"}
-              id="main-page-logo"
-            />
-              <NavBar setUser={setUser} user={user} />
-              <div id="main-page-forms">
-              <ArtistSearchForm
-                handleArtistChange={handleArtistChange}
-                handleArtistSearch={handleArtistSearch}
-                artistSearch={artistSearch}
-                setArtistSearch={setArtistSearch}
-              />
-              {lyrics && (
-                <GuessInputForm
-                  handleGuessInput={handleGuessInput}
-                  handleUserGuessSubmit={handleUserGuessSubmit}
-                  setLyrics={setLyrics}
-                  playSong={playSong}
-                />
-              )}
-            </div>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-            </Routes>
-          </>
-        ) : (
-          <AuthPage setUser={setUser} />
-        )}
-      </main>
-    </>
+    <main className="App">
+      { user ?
+        <>
+          <NavBar setUser={setUser} user={user}/>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </> 
+        :
+        <AuthPage setUser={setUser}/>
+      }
+    </main>
   );
-}
+    }
