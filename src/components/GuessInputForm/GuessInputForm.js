@@ -4,11 +4,14 @@ import ScoreCard from '../ScoreCard/ScoreCard'
 export default function GuessInputForm({ handleGuessInput, handleUserGuessSubmit, playSong, stopSong, SongArray, score }){
     return(
     <>
-    <ScoreCard score={score} />
-     <form>
+    {/* <ScoreCard score={score} /> */}
+     <form id='guess-input-form'>
+     
+     <div id='button-div'>
         <button type='button' id="play-song-button" onClick={playSong}>Play Song</button>
-
         <button type='button' id="stop-song-button" onClick={stopSong}>Stop Song</button>
+     </div>
+      
 
         <select name ='DropDown' id='song-drop-down' onChange={handleGuessInput} >
           <option></option>

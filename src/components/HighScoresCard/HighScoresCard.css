@@ -1,9 +1,12 @@
 #scoreboard-img {
-    width: 250px;
-    margin-left: 28px;
+    max-width: 150%;
+
+    /* width: 250px;
+    margin-left: 28px; */
 }
 
 #scoreboard {
-    margin-top: -120px;
-    margin-left: -980px;
+
+    /* margin-top: -120px;
+    margin-left: -980px; */
 }
