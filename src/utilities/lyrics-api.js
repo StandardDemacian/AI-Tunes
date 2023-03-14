@@ -1,6 +1,6 @@
 // import sendRequest from "./users-api"
 
-const BASE_URL = "/api/lyrics"
+const BASE_URL = "https://ai-tunes.onrender.com/api/lyrics"
 
 
 
