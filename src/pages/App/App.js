@@ -62,6 +62,8 @@ export default function App() {
     console.log("GAME LOGIC GOES HERE");
   }
 
+
+
   async function checkGuess(userGuess, currentSong){
   //  let userGuess = guess
   //  let currentSong = lyrics
@@ -142,6 +144,7 @@ function stopSong(){
   return (
     <>
     <main className="App">
+
       { user ? (
         <>
          <img
@@ -151,30 +154,37 @@ function stopSong(){
          />
           <NavBar setUser={setUser} user={user}/>
           <div id="main-page-forms">
+
           <ArtistSearchForm 
             handleArtistChange={handleArtistChange}
             handleArtistSearch={handleArtistSearch}
             artistSearch={artistSearch}
             setArtistSearch={setArtistSearch}
           />
+
           {lyrics && (
           <GuessInputForm
+
              SongArray = {songArray}
              handleGuessInput={handleGuessInput}
              handleUserGuessSubmit={handleUserGuessSubmit}
              setLyrics={setLyrics}
              playSong={playSong}
              stopSong={stopSong}
+
              score={ScoreCard} />)}
           </div>
+
           <Routes>
             <Route path="/" element={<HomePage />} />
           </Routes>
         </> 
+
        ) : (
         <AuthPage setUser={setUser}/>
       )}
     </main>
+
     </>
   );
 }
