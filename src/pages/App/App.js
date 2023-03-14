@@ -13,9 +13,7 @@ import ScoreCard from "../../components/ScoreCard/ScoreCard";
 import { updateScore } from "../../utilities/users-api";
 import mainlogo from "../../page-images/ai-tunes.png";
 
-
 const textKey = process.env.VOICE_API_KEY
-
 
 export default function App() {
   //ALLLLLLLL THE STATE
@@ -24,10 +22,10 @@ export default function App() {
   const [lyrics, setLyrics] = useState(false);
   const [audioLyrics, setAudioLyrics] = useState("");
   const [guess, setGuess] = useState("");
-  const [guessId, setGuessId] = useState("");
   const [songArray, setSongArray] = useState([])
-  const [userScore, setUserScore] = useState(0)
-
+  const [guessCorrectMessage, setCorrectGuessMessage] = useState(false)
+  const [guessWrongMessage, setWrongGuessMessage] = useState(false)
+  
   function handleArtistChange(event) {
     const formData = event.target.value;
     setArtistSearch(formData);
@@ -36,16 +34,10 @@ export default function App() {
   async function handleArtistSearch(event) {
     event.preventDefault();
     const randomLyrics = await showLyrics(artistSearch);
-    // const lyrcisId = await showLyricsId(guess)
     const songArray = await getSongArray()
     setSongArray(songArray)
-    console.log(songArray)
     setLyrics(randomLyrics.lyrics.lyrics_id)
     setAudioLyrics(randomLyrics.lyrics.lyrics_body)
-    // console.log(`songLyrics: ${lyrics}`)
-    // console.log(`randomLyrics: ${randomLyrics}`)
-    console.log(`audioLyrics: ${audioLyrics}`)
- 
   }
 
   function handleGuessInput(event) {
@@ -56,35 +48,27 @@ export default function App() {
   async function handleUserGuessSubmit(event) {
     event.preventDefault();
     const guessedSongId = await showLyricsId(artistSearch, guess);
-    // setGuessId(guessedSongId.lyrics.lyrics_id)
-    // checkGuess function goes here
     checkGuess(lyrics, guessedSongId.lyrics.lyrics_id);
-    console.log("GAME LOGIC GOES HERE");
   }
 
-
-
   async function checkGuess(userGuess, currentSong){
-  //  let userGuess = guess
-  //  let currentSong = lyrics
-  console.log(`User's guess:${userGuess} and Current Song:${currentSong}`)
    if(!(userGuess === currentSong)){
-    // updateScore(user)
-    alert('yyou lose baddie')
     setArtistSearch('')
     setGuess('')
     setLyrics(false)
     setSongArray([])
+    setWrongGuessMessage(true)
    } else {
-    setUserScore(userScore++)
-    alert('you win or whatever')
     setArtistSearch('')
     setGuess('')
     setLyrics(false)
-    // updateScore(user)
-    
+    setSongArray([])
+    updateScore(user) 
+    .then(resUser => {
+      setUser(resUser)
+    setCorrectGuessMessage(true)
+    })
    }
-
   }
 
   /////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
@@ -139,12 +123,9 @@ function stopSong(){
   playSound.stop(ctx.currentTime)
 }
 /////////////////////////// AUDIO PLAYBACK FUNCTIONALITY //////////////////////////////
-
-
   return (
     <>
     <main className="App">
-
       { user ? (
         <>
          <img
@@ -164,16 +145,21 @@ function stopSong(){
 
           {lyrics && (
           <GuessInputForm
-
              SongArray = {songArray}
              handleGuessInput={handleGuessInput}
              handleUserGuessSubmit={handleUserGuessSubmit}
              setLyrics={setLyrics}
              playSong={playSong}
              stopSong={stopSong}
-
              score={ScoreCard} />)}
           </div>
+
+          {guessCorrectMessage && (
+            <h3>Congratulations! 10 points to Gryffindor!</h3>
+          )} 
+          {guessWrongMessage && (
+            <h3>Unforunately, you're not too great at this. Study up and try again!</h3>
+          )} 
 
           <Routes>
             <Route path="/" element={<HomePage />} />

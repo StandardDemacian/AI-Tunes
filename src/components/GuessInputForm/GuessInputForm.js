@@ -11,6 +11,7 @@ export default function GuessInputForm({ handleGuessInput, handleUserGuessSubmit
         <button type='button' id="stop-song-button" onClick={stopSong}>Stop Song</button>
 
         <select name ='DropDown' id='song-drop-down' onChange={handleGuessInput} >
+          <option></option>
           <option value={SongArray[0]}>{SongArray[0]}</option>
           <option value={SongArray[1]}>{SongArray[1]}</option>
           <option value={SongArray[2]}>{SongArray[2]}</option>
@@ -22,7 +23,6 @@ export default function GuessInputForm({ handleGuessInput, handleUserGuessSubmit
           <option value={SongArray[8]}>{SongArray[8]}</option>
           <option value={SongArray[9]}>{SongArray[9]}</option>
         </select>
-        {/* <input placeholder="Guess the song" type='text' name='guess' id="song-guess-input" onChange={handleGuessInput} /> */}
         <button type='submit' id="guess-song-button" onClick={handleUserGuessSubmit}>Submit</button>
       </form>
     </>

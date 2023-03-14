@@ -38,7 +38,7 @@ async function updateScore(req, res, next){
         const user = await User.findOne({email: req.body.email})
         user.score++
         user.save()
-        return user
+        res.status(200).json(user)
     } catch(error){
         res.status.Code = 422
         throw error
