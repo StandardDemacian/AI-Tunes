@@ -12,7 +12,7 @@ import GuessInputForm from "../../components/GuessInputForm/GuessInputForm";
 import { updateScore } from "../../utilities/users-api";
 import mainlogo from "../../page-images/ai-tunes.png";
 
-// hey this is something
+// this is a test
 
 export default function App() {
   const [user, setUser] = useState(getUser());
