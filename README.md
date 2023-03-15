@@ -12,17 +12,19 @@ This is the README documentation for AI Tunes,the app that challenges your music
 
 ScreenShots
 ---------------
-
+![AuthPage](/images/AuthPage.png)
+![HomePage](/images/HomePage.png)
+![Artist First Search](/images/AuthPage.png)
 
 MVP User Stories
 ----------------
 
-- [] As a user I want to be able to log in and log out
-- [] As a user I want to be able to to search for an artist and receive random lyrics played back to me
-- [] As a user I want to be able to guess what song is being played back to me
-- [] As a user I want to see if my guess was correct
-- [] As a user I want 1 point to be added for each correct guess
-- [] As a user I want the game to reset if I get an answer wrong
+- [X] As a user I want to be able to log in and log out
+- [X] As a user I want to be able to to search for an artist and receive random lyrics played back to me
+- [X] As a user I want to be able to guess what song is being played back to me
+- [X] As a user I want to see if my guess was correct
+- [X] As a user I want 1 point to be added for each correct guess
+- [X] As a user I want the game to reset if I get an answer wrong
 
 
 
