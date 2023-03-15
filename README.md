@@ -5,6 +5,7 @@ This is the README documentation for [AI Tunes](https://ai-tunes-client.onrender
 
 1. Screenshots
 2. MVP User Stories
+3. Technologies Used
 4. Trello Board
 5. Wireframes
 6. ERD Breakdown 
@@ -26,7 +27,15 @@ MVP User Stories
 - [X] As a user I want 1 point to be added for each correct guess
 - [X] As a user I want the game to reset if I get an answer wrong
 
+Technologies Used
+--------------------
 
+- MongoDb
+- Express
+- Text-to-Voice API
+- Musixmatch API
+- React
+- Node
 
 
 Trello Board
