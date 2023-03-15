@@ -14,7 +14,7 @@ ScreenShots
 ---------------
 ![AuthPage](/images/AuthPage.png)
 ![HomePage](/images/HomePage.png)
-![Artist First Search](/images/AuthPage.png)
+![Artist First Search](/images/Artist%20First%20Search.png)
 
 MVP User Stories
 ----------------
