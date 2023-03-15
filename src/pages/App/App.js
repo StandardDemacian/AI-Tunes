@@ -38,6 +38,8 @@ export default function App() {
     setSongArray(songArray)
     setLyrics(randomLyrics.lyrics.lyrics_id)
     setAudioLyrics(randomLyrics.lyrics.lyrics_body)
+    setCorrectGuessMessage(false)
+    setWrongGuessMessage(false)
   }
 
   function handleGuessInput(event) {
