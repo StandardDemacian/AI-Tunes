@@ -1,7 +1,7 @@
 Project 4 - AI-Tunes
 ==============================
 
-This is the README documentation for AI Tunes,the app that challenges your music knowledge.  The game is simple. Enter a name of an artist and attempt to guess the song that is generated back to you. The challenge is that the song will be said back to you in an AI voice.
+This is the README documentation for [AI Tunes](https://ai-tunes-client.onrender.com/),the app that challenges your music knowledge.  The game is simple. Enter a name of an artist and attempt to guess the song that is generated back to you. The challenge is that the song will be said back to you in an AI voice. That said, give it a try and have fun! 
 
 1. Screenshots
 2. MVP User Stories
