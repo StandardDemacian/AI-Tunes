@@ -29,6 +29,7 @@ export default function App() {
   function handleArtistChange(event) {
     const formData = event.target.value;
     setArtistSearch(formData);
+    setSongArray([])
   }
 
   async function handleArtistSearch(event) {
@@ -128,6 +129,7 @@ function stopSong(){
   return (
     <>
     <main className="App">
+      
       { user ? (
         <>
         <div className="header-form">
