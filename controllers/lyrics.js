@@ -47,7 +47,6 @@ async function getLyrics(req,res){
                         
                         res.status(200).json({lyrics: response})
                         trackList.length = 0 
-                        songOptionListThing.length = 0
                         //ADD remove /n function here
                     })
         }
