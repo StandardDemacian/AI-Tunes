@@ -19,6 +19,7 @@ async function getLyrics(req,res){
       axios.request(options)
       .then((response) => {
         let trackListBody = response.data.message.body.track_list
+        songOptionListThing.length = 0
         trackListBody.forEach((song) => {
             let songId = song.track.track_id
             let songName = song.track.track_name
